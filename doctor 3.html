@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Aditya Dave | Ayurvedic Excellence & Holistic Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #005a87; /* Deep Medical Blue */
+            --secondary: #00a8a8; /* Healthcare Teal */
+            --accent: #ffcc00; 
+            --bg-light: #f8fbff;
+            --white: #ffffff;
+            --dark: #2c3e50;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-light); color: #333; line-height: 1.6; scroll-behavior: smooth; }
+
+        
+        /* --- Navigation --- */
+        nav { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { color: var(--primary); font-family: 'Montserrat'; font-size: 1.4rem; font-weight: bold; text-decoration: none; cursor: pointer; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: var(--dark); text-decoration: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+        nav ul li a:hover { color: var(--secondary); }
+
+        /* --- Hero --- */
+        header.hero { background: linear-gradient(rgba(0, 90, 135, 0.8), rgba(0, 90, 135, 0.8)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-attachment: fixed; color: white; padding: 120px 5%; text-align: center; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 10px; }
+
+        /* --- Sections --- */
+        section { padding: 80px 10%; }
+        h2 { text-align: center; color: var(--primary); font-family: 'Montserrat'; font-size: 2.2rem; margin-bottom: 40px; text-transform: uppercase; position: relative; }
+        h2::after { content: ''; width: 60px; height: 4px; background: var(--secondary); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        /* --- About Content Styling --- */
+        .about-container { max-width: 900px; margin: 0 auto; color: #444; }
+        .about-container p { margin-bottom: 20px; text-align: justify; font-size: 1.05rem; }
+
+        /* --- Services --- */
+        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .service-card { background: white; padding: 25px; border-radius: 8px; border-top: 4px solid var(--secondary); transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; }
+        .service-card:hover { transform: translateY(-5px); border-top-color: var(--primary); }
+        .service-card h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; }
+
+        /* --- Forms & Tables --- */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .contact-box { background: var(--primary); color: white; padding: 40px; border-radius: 10px; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .btn-submit { background: var(--secondary); color: white; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        
+        .admin-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); justify-content: center; align-items: center; }
+        .login-card, .dashboard-card { background: white; padding: 40px; border-radius: 20px; width: 95%; max-width: 1100px; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .admin-table th { background: var(--primary); color: white; }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 40px; }
+        @media (max-width: 768px) { .contact-wrapper { grid-template-columns: 1fr; } .hero h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+
+    
+
+    <nav>
+        <div class="logo" onclick="showHome()">Dr. Aditya Dave</div>
+        <ul>
+            <li><a onclick="showHome(); document.getElementById('about').scrollIntoView()">About</a></li>
+            <li><a onclick="showHome(); document.getElementById('services').scrollIntoView()">Treatments</a></li>
+            <li><a onclick="showHome(); document.getElementById('contact').scrollIntoView()">Appointments</a></li>
+            <li><a onclick="openAdmin()">Staff Login</a></li>
+        </ul>
+    </nav>
+
+    <div id="main-content">
+        <header class="hero">
+            <h1>Dr. ADITYA DAVE</h1>
+            <p>Ayurvedic Physician & Wellness Consultant</p>
+            <p><b> Ancient Wisdom for Modern Health</b></p>
+        </header>
+
+        <section id="about">
+            <h2>About Dr. Aditya Dave</h2>
+            <div class="about-container">
+                <p><b>Dr. Aditya Dave</b> is a dedicated Ayurvedic practitioner committed to restoring health through the timeless principles of Ayurveda. With years of clinical experience, he believes that true healing begins when we align our lifestyle with the laws of nature. His approach is not merely to treat symptoms but to identify and eliminate the root cause of ailments by balancing the body’s vital energies.</p>
+                
+                <p>At our center, we specialize in <b>Nadi Pariksha (Pulse Diagnosis)</b>, an ancient diagnostic tool that reveals the physical and emotional status of an individual. By understanding your unique <b>Prakriti (Body Constitution)</b>, Dr. Dave crafts personalized wellness protocols that include herbal formulations, dietary adjustments, and mindfulness practices tailored specifically to your genetic makeup.</p>
+                
+                <p>Beyond general consultation, Dr. Dave is a proponent of <b>Panchakarma</b>—the five-fold purification process. He has successfully helped patients manage chronic conditions such as arthritis, digestive disorders, skin ailments, and stress-related issues. Our mission is to empower you with the knowledge and natural tools needed to achieve a state of <i>Svastha</i>—optimal health and mental clarity.</p>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2>Ayurvedic Specializations</h2>
+            <div class="services-container">
+                <div class="service-card"><h3>1) NADI PARIKSHA</h3><p>Ancient pulse diagnosis to detect internal imbalances.</p></div>
+                <div class="service-card"><h3>2) PANCHAKARMA</h3><p>Complete detoxification and rejuvenation therapies.</p></div>
+                <div class="service-card"><h3>3) SHIRODHARA</h3><p>Traditional oil-pouring therapy for stress and insomnia.</p></div>
+                <div class="service-card"><h3>4) ARTHRITIS CARE</h3><p>Herbal management for joint pain and inflammation.</p></div>
+                <div class="service-card"><h3>5) DIGESTIVE WELLNESS</h3><p>Treatments for acidity, bloating, and metabolic health.</p></div>
+                <div class="service-card"><h3>6) SKIN & HAIR CARE</h3><p>Natural Ayurvedic solutions for chronic skin conditions.</p></div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Book An Appointment</h2>
+            <div class="contact-wrapper">
+                <div class="contact-box">
+                    <h3>Clinic Details</h3>
+                    <p><strong>Clinic:</strong> Dave Ayurvedic Wellness</p>
+                    <p><strong>Address:</strong> Sath Bazar, Nadiad, Gujarat, India</p>
+                    <p><strong>Pincode:</strong> 387001</p>
+                    <p><strong>Phone:</strong> +91 98241 03700</p>
+                    <p><strong>Email:</strong> dr.adityadave@gmail.com</p>
+                </div>
+                <div class="contact-form" id="formWrapper">
+                    <form id="clientForm">
+                        <input type="text" id="cName" placeholder="Patient Full Name" required>
+                        <input type="text" id="cEmail" placeholder="Case No. (e.g. 1201)" required>
+                        <input type="tel" id="cPass" placeholder="Contact Number" required>
+                        <input type="text" id="cReq" placeholder="Consultation for (e.g. Skin, Pain, Detox)">
+                        <textarea id="cMsg" rows="5" placeholder="Briefly describe your symptoms..."></textarea>
+                        <button type="submit" class="btn-submit">REQUEST APPOINTMENT</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="adminModal" class="admin-modal">
+        <div id="loginBox" class="login-card" style="max-width:400px; text-align:center;">
+            <h2>Staff Login</h2>
+            <input type="text" id="adminUser" placeholder="Username">
+            <input type="password" id="adminPass" placeholder="Password">
+            <button class="btn-submit" onclick="handleLogin()">VIEW APPOINTMENTS</button>
+            <button class="btn-submit" style="background:#666; margin-top:10px;" onclick="closeAdmin()">Cancel</button>
+        </div>
+        <div id="dashboardBox" class="dashboard-card" style="display:none; max-height: 80vh; overflow-y: auto;">
+            <h2>Patient Appointment List</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr><th>Date</th><th>Patient</th><th>Contact</th><th>Concern</th><th>Action</th></tr>
+                </thead>
+                <tbody id="appTableBody"></tbody>
+            </table>
+            <button class="btn-submit" style="background:#666; margin-top:20px;" onclick="location.reload()">Logout</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dr. ADITYA DAVE | Ancient Wisdom, Modern Care</p>
+        <a style="color:#777; font-size: 0.7rem; cursor:pointer;" onclick="openAdmin()">STAFF PORTAL</a>
+    </footer>
+
+    <script>
+        function showHome() { document.getElementById('main-content').style.display = 'block'; }
+        function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
+        function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
+
+        function handleLogin() {
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            if(user === "adi" && pass === "adi") {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('dashboardBox').style.display = 'block';
+                renderDashboard();
+            } else { alert("Access Denied."); }
+        }
+
+        function renderDashboard() {
+            const tableBody = document.getElementById('appTableBody');
+            const apps = JSON.parse(localStorage.getItem('doc_apps')) || [];
+            tableBody.innerHTML = apps.length > 0 ? '' : '<tr><td colspan="5">No appointments found.</td></tr>';
+            apps.forEach((app, index) => {
+                tableBody.innerHTML += `<tr>
+                    <td>${app.date}</td>
+                    <td>${app.name}</td>
+                    <td>${app.contact}</td>
+                    <td>${app.service}</td>
+                    <td><button onclick="deleteIndividual(${index})">Done</button></td>
+                </tr>`;
+            });
+        }
+
+        function deleteIndividual(index) {
+            let apps = JSON.parse(localStorage.getItem('doc_apps')) || [];
+            apps.splice(index, 1);
+            localStorage.setItem('doc_apps', JSON.stringify(apps));
+            renderDashboard();
+        }
+
+        document.getElementById('clientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newApp = {
+                date: new Date().toLocaleDateString(),
+                name: document.getElementById('cName').value,
+                contact: document.getElementById('cPass').value,
+                service: document.getElementById('cReq').value
+            };
+            let apps = JSON.parse(localStorage.getItem('doc_apps')) || [];
+            apps.push(newApp);
+            localStorage.setItem('doc_apps', JSON.stringify(apps));
+            document.getElementById('formWrapper').innerHTML = `<div style="text-align:center; padding:30px; border:2px solid var(--primary); border-radius:10px;"><h3>Pranam, ${newApp.name}!</h3><p>Your appointment request has been received.</p><button class="btn-submit" onclick="location.reload()">Back</button></div>`;
+        });
+    </script>
+</body>
+</html>
